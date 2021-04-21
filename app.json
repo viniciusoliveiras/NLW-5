@@ -3,6 +3,7 @@
     "name": "plantmanager",
     "slug": "plantmanager",
     "version": "1.0.0",
+    "userInterfaceStyle": "light",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {

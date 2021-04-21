@@ -1,13 +1,6 @@
-import React, { useState } from 'react';
-import {
-  Text,
-  StyleSheet,
-  SafeAreaView,
-  Platform,
-  View,
-  TextInput,
-  KeyboardAvoidingView,
-} from 'react-native';
+import React from 'react';
+import { Text, StyleSheet, SafeAreaView, Platform, View } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 
 import { Button } from '../components/Button';
 
@@ -15,6 +8,11 @@ import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
 export function Confirmation() {
+  const navigation = useNavigation();
+
+  function handleConfirmation() {
+    navigation.navigate('PlantSelect');
+  }
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
@@ -28,12 +26,13 @@ export function Confirmation() {
         </Text>
 
         <View style={styles.footer}>
-          <Button title='Começar' />
+          <Button title='Começar' onPress={handleConfirmation} />
         </View>
       </View>
     </SafeAreaView>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
