@@ -1,32 +1,51 @@
 import React from 'react';
 import { Text, StyleSheet, SafeAreaView, Platform, View } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation, useRoute } from '@react-navigation/core';
 
 import { Button } from '../components/Button';
 
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
+interface ConfirmationPageProps {
+  title: string;
+  subtitle: string;
+  buttonTitle: string;
+  icon: 'smile' | 'hug';
+  nextScreen: string;
+}
+
+const emojis = {
+  smile: '😁',
+  hug: '🤗',
+};
+
 export function Confirmation() {
   const navigation = useNavigation();
+  const routes = useRoute();
+
+  const {
+    title,
+    subtitle,
+    buttonTitle,
+    icon,
+    nextScreen,
+  } = routes.params as ConfirmationPageProps;
 
   function handleConfirmation() {
-    navigation.navigate('PlantSelect');
+    navigation.navigate(nextScreen);
   }
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.emoji}>😁</Text>
+        <Text style={styles.emoji}>{emojis[icon]}</Text>
 
-        <Text style={styles.title}>Prontinho</Text>
+        <Text style={styles.title}>{title}</Text>
 
-        <Text style={styles.subtitle}>
-          Agora vamos começar a cuidar das suas {'\n'}
-          plantinhas com muito cuidado.
-        </Text>
+        <Text style={styles.subtitle}>{subtitle}</Text>
 
         <View style={styles.footer}>
-          <Button title='Começar' onPress={handleConfirmation} />
+          <Button title={buttonTitle} onPress={handleConfirmation} />
         </View>
       </View>
     </SafeAreaView>
@@ -62,10 +81,11 @@ const styles = StyleSheet.create({
   subtitle: {
     fontFamily: fonts.text,
     fontSize: 17,
-    lineHeight: 25,
+    lineHeight: 25,   
     color: colors.gray,
     textAlign: 'center',
     paddingVertical: 10,
+    width: 260,
   },
   footer: { width: '100%', paddingHorizontal: 50, marginTop: 40 },
 });
