@@ -109,7 +109,7 @@ export function PlantSelect() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Header title='Olá,' />
+        <Header isHomeScreen={true} />
 
         <Text style={styles.title}>Em qual ambiente</Text>
         <Text style={styles.subtitle}>voce quer colocar sua planta?</Text>

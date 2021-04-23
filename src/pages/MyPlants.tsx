@@ -46,7 +46,7 @@ export function MyPlants() {
         onPress: async () => {
           try {
             await removePlant(plant.id);
-            
+
             setMyPlants((oldData) =>
               oldData.filter((item) => item.id !== plant.id)
             );
@@ -62,7 +62,7 @@ export function MyPlants() {
 
   return (
     <View style={styles.container}>
-      <Header title='Minhas' />
+      <Header isHomeScreen={false} />
 
       <View style={styles.spotlight}>
         <Image source={waterdrop} style={styles.spotlightImage} />

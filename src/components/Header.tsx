@@ -9,11 +9,10 @@ import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
 interface HeaderProps {
-  title: string;
-  subtitle?: string;
+  isHomeScreen: boolean;
 }
 
-export function Header({ title, subtitle }: HeaderProps) {
+export function Header({ isHomeScreen }: HeaderProps) {
   const [username, setUsername] = useState('');
 
   useEffect(() => {
@@ -28,11 +27,19 @@ export function Header({ title, subtitle }: HeaderProps) {
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={styles.greeting}>{title}</Text>
-        <Text style={styles.username}>{username}</Text>
-      </View>
+      {isHomeScreen && (
+        <View>
+          <Text style={styles.greeting}>Olá,</Text>
+          <Text style={styles.username}>{username}</Text>
+        </View>
+      )}
 
+      {!isHomeScreen && (
+        <View>
+          <Text style={styles.greeting}>Minhas</Text>
+          <Text style={styles.username}>Plantinhas</Text>
+        </View>
+      )}
       <Image source={userImg} style={styles.userImage} />
     </View>
   );
