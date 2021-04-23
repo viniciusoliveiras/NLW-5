@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, FlatList, Image, Alert } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Image, Alert, Platform } from 'react-native';
 import { formatDistance } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 30,
-    paddingTop: 50,
+    paddingTop: Platform.OS === 'android' ? 25 : 30,
     backgroundColor: colors.background,
   },
   spotlight: {
